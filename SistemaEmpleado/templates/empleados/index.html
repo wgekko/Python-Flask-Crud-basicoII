@@ -1,0 +1,40 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxdn.bootstrapcdn/boostrap/4.0.0/css/bootstrap.min.css">
+    <title>Inicio</title>
+</head>
+<body>-->
+
+{% include 'header.html' %}    
+    <br/>
+    <a href="{{url_for('create')}}" class="btn btn-success"> Ingresar nuevo empleado </a>
+    <br><br>
+    <table class="table table-light">
+        <thead class="thead-light">
+            <tr>
+                <th> Id </th>
+                <th> Foto </th>
+                <th> Nombre </th>
+                <th> Correo </th>
+                <th> Acciones </th>               
+            </tr>
+        </thead>
+        <tbody>
+            {% for empleado in empleados %}
+            <tr>
+                <td> {{empleado[0]}} </td>
+                <td> <img class="img-thumbnail" with="100" src="uploads/{{ empleado[3] }}" alt=""> </td>
+                <td> {{empleado[1]}} </td>
+                <td> {{empleado[2]}}</td>
+                <td> <a  class="btn btn-warning" href="/edit/{{ empleado[0] }}"> Modificar</a> || 
+                    <a  onclick="return confirm('¿Seguro de borrar el empleado?')" class="btn btn-danger" href="/destroy/{{ empleado[0] }}">Eliminar</a>
+                   </td>
+            </tr>
+            {% endfor %}
+        </tbody>    
+    </table>
+{% include 'footer.html' %}

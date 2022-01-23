@@ -1,0 +1,51 @@
+
+{% include 'header.html' %}
+<!--recibimos todos los mensajes de flask-->
+{% with messages= get_flashed_messages() %}
+
+<!-- aqui de desglosan todos los mensajes recibidos -->>
+{% if messages %}
+
+    <div class="alert alert-danger" role="alert">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}
+{% endwith  %} 
+
+<br><br>
+<form method="post" action="/store" enctype="multipart/form-data">
+
+    <div class="card">
+        <div class="card-header">
+            Ingresar Empleado
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Datos del Empleado</h4>
+            <p class="card-text">
+                <div class="form-group">
+                  <label for="nombre"> Nombre :</label>
+                  <input  id="nombre" class="form-control" type="text"  name="nombre" >                
+                </div>
+                <div class="form-group">
+                  <label for="correo"> Correo :</label>
+                  <input type="text"  id="correo" class="form-control"  name="correo">                  
+                </div>
+                <div class="form-group">
+                    <label for="foto"> Foto :</label>
+                    <input type="file"  id="foto" class="form-control"  name="foto" >                  
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Click para Agregar">    
+                    <br><br>
+                    <a href="{{url_for('index')}}" class="btn btn-primary"> Inicio </a>                   
+                </div>            
+            </p>
+        </div>       
+    </div>  
+    
+
+</form>
+
+{% include 'footer.html' %}
